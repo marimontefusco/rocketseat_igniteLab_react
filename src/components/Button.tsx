@@ -13,7 +13,7 @@ export function Button({children, asChild}: ButtonProps) {
     return (
         <Component
             className= {clsx(
-                'bg-cyan-500 text-black text-sm font-semibold px-3 py-4 rounded w-full transition-colors hover:bg-cyan-300 focus:ring-2 ring-white'
+                'bg-cyan-500 text-black text-sm font-semibold px-3 py-4 rounded w-full transition-colors hover:bg-cyan-300 focus:ring-1 ring-white'
             )}
         >
             {children}
