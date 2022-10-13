@@ -6,8 +6,16 @@ export default {
     component: Text, 
     args: {
         children: 'Lorem ipsum.',
+        size: 'md', /* tamanho padrão é medium */ 
+    },
+    argTypes: {
+        size: {
+            options: ['sm', 'md', 'lg'],
+            control: {
+                type: 'inline-radio'
+            }
+        }
     }
-
 } as Meta<TextProps>;
 
 /* Configurações de tamanho de fonte: */
@@ -30,6 +38,13 @@ export const CustomComponent: StoryObj<TextProps> = {
         asChild: true,
         children: (
             <p>Testando</p>
-        ),
+        )
+    },
+    argTypes: {
+        children: {
+            table: {
+                disable: true,
+            }
+        }
     }
 };

@@ -6,7 +6,7 @@ export interface TextProps {
     size?: 'sm' | 'md' | 'lg';
     children: ReactNode;
     asChild?: boolean;
-}
+};
 
 export function Text({ size = 'md', children, asChild }: TextProps) {
     const Component = asChild ? Slot : 'span'; 
