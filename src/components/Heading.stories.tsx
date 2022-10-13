@@ -40,11 +40,6 @@ export const CustomComponent: StoryObj<HeadingProps> = {
         )
     },
     argTypes: {
-        children: {
-            table: {
-                disable: true,
-            }
-        }, 
         asChild: {
             table: {
                 disable: true,

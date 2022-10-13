@@ -1,16 +1,60 @@
-import { clsx } from 'clsx';
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, ReactNode } from 'react';
+import { Slot } from '@radix-ui/react-slot';
 
-export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement>{
-}
-/* TextInputProps agora pode receber toda propriedade 
-existente no HTML tradicional */
+/* Pattern de Composição -> pattern do React pra qndo a gente trabalha com
+componentes que serão na verdade um conjunto de vários outros componentes */
 
-export function TextInput(props: TextInputProps) {
+/* Componente TextInputRoot -> TextInputIcon + TextInputInput */
+export interface TextInputRootProps {
+    children: ReactNode;
+};
+
+function TextInputRoot(props: TextInputRootProps) {
+    return (
+        <div 
+        className='flex items-center gap-3 py-4 px-3 w-full rounded bg-gray-800 focus-within:ring-1 ring-cyan-500'
+        >
+            {props.children}
+        </div>
+    )
+};
+
+TextInputRoot.displayName = 'TextInput.Root';
+
+/* Componente TextInputIcon */
+export interface TextInputIconProps {
+    children: ReactNode;
+};
+
+function TextInputIcon(props: TextInputIconProps){
+    return (
+        <Slot className='w-6 h-6 text-gray-400'>
+            {props.children}
+        </Slot>
+    )
+};
+
+TextInputIcon.displayName = 'TextInput.Icon';
+
+/* Componente TextInputInput */
+export interface TextInputInputProps extends InputHTMLAttributes<HTMLInputElement>{};
+    // TextInputProps agora pode receber toda propriedade existente no HTML tradicional
+
+function TextInputInput(props: TextInputInputProps) {
     return (
         <input
-        className={clsx('bg-gray-800 text-gray-100 text-xs font-sans w-full outline-none py-4 px-3 rounded placeholder:text-gray-400 focus:ring-1 ring-cyan-500')}
-        {...props}
+            className='flex-1 bg-transparent text-gray-100 text-xs font-sans placeholder:text-gray-400 outline-none'
+            {...props}
         />
     )
-}
+};
+
+TextInputInput.displayName = 'TextInput.Input';
+ 
+export const TextInput = {
+    Root: TextInputRoot,
+    Input: TextInputInput,
+    Icon: TextInputIcon,
+};
+
+/* gap-3 -> dist entre icon e placeholder */
