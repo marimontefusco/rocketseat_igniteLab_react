@@ -14,5 +14,11 @@ module.exports = {
   },
   "features": {
     "storyStoreV7": true
+  },
+  viteFinal: ( config, { configType }) => {
+    if (configType === 'PROFUCTION') {
+      config.base = '/rocketseat_igniteLab_react/'
+    }
+    return config
   }
 }
