@@ -1,6 +1,5 @@
 name: Deploy Storybook
 
-# Toda vez que houver um push na branch main
 on: 
   push:
     branches:
