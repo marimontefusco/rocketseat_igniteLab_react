@@ -1,3 +1,4 @@
+import { FormEvent, useState } from "react";
 import { Button } from "../components/Button";
 import { Checkbox } from "../components/Checkbox";
 import { Heading } from "../components/Heading";
@@ -7,6 +8,15 @@ import { Logo } from "../Logo";
 import { Envelope, Lock } from "phosphor-react";
 
 export function SignIn() {
+
+    // Simulando processo de login
+    const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+
+    function handleSignIn (event: FormEvent){
+        event.preventDefault();
+
+        setIsUserSignedIn(true);
+    };
 
     return (
         <div className='w-screen h-screen bg-gray-900 flex flex-col items-center justify-center text-gray-100'>
@@ -22,7 +32,9 @@ export function SignIn() {
                 </Text>
             </header>
 
-            <form className='flex flex-col items-stretch w-full max-w-sm mt-16 gap-4'>
+            <form onSubmit={handleSignIn} className='flex flex-col items-stretch w-full max-w-sm mt-16 gap-4'>
+                { isUserSignedIn && <Text>Login realizado!</Text> }
+
                 <label htmlFor="email" className='flex flex-col gap-3'>
                     <Text className='font-semibold'>Seu e-mail</Text>
                 
@@ -67,4 +79,4 @@ export function SignIn() {
             </footer>
         </div>
     )
-}
+};
