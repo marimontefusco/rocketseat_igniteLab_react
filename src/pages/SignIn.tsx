@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import axios from "axios";
 import { Button } from "../components/Button";
 import { Checkbox } from "../components/Checkbox";
 import { Heading } from "../components/Heading";
@@ -12,8 +13,13 @@ export function SignIn() {
     // Simulando processo de login
     const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
-    function handleSignIn (event: FormEvent){
+    async function handleSignIn (event: FormEvent){
         event.preventDefault();
+
+        await axios.post('/sessions', {
+            email: 'mariabbiriba@gamilcom',
+            senha : '12345678'
+        });
 
         setIsUserSignedIn(true);
     };
